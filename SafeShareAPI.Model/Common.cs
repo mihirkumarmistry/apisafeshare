@@ -52,4 +52,16 @@
         public bool IsActive { get; set; }
         public bool IsSendLink { get; set; }
     }
+
+    public class KeyVal
+    {
+        public string Key { get; set; }
+        public int Value { get; set; }
+    }
+
+    public class KeyValString
+    {
+        public string Key { get; set; }
+        public string Value { get; set; }
+    }
 }

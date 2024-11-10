@@ -12,7 +12,7 @@ using SafeShareAPI.Data;
 namespace SafeShareAPI.Data.Migrations
 {
     [DbContext(typeof(SqlServerContext))]
-    [Migration("20241110094443_FirstMigration")]
+    [Migration("20241110104318_FirstMigration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
@@ -259,9 +259,6 @@ namespace SafeShareAPI.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AppointmentId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Detail")
                         .IsRequired()
@@ -558,13 +555,11 @@ namespace SafeShareAPI.Data.Migrations
 
             modelBuilder.Entity("SafeShareAPI.Model.Allergie", b =>
                 {
-                    b.HasOne("SafeShareAPI.Model.MedicalHistory", "MedicalHistory")
+                    b.HasOne("SafeShareAPI.Model.MedicalHistory", null)
                         .WithMany("Allergies")
                         .HasForeignKey("MedicalHistoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("MedicalHistory");
                 });
 
             modelBuilder.Entity("SafeShareAPI.Model.Appointment", b =>
@@ -597,46 +592,38 @@ namespace SafeShareAPI.Data.Migrations
 
             modelBuilder.Entity("SafeShareAPI.Model.DiagnosticTest", b =>
                 {
-                    b.HasOne("SafeShareAPI.Model.MedicalHistory", "MedicalHistory")
+                    b.HasOne("SafeShareAPI.Model.MedicalHistory", null)
                         .WithMany("DiagnosticTest")
                         .HasForeignKey("MedicalHistoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("MedicalHistory");
                 });
 
             modelBuilder.Entity("SafeShareAPI.Model.Medication", b =>
                 {
-                    b.HasOne("SafeShareAPI.Model.MedicalHistory", "MedicalHistory")
+                    b.HasOne("SafeShareAPI.Model.MedicalHistory", null)
                         .WithMany("Medications")
                         .HasForeignKey("MedicalHistoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("MedicalHistory");
                 });
 
             modelBuilder.Entity("SafeShareAPI.Model.PreviousMedicalCondition", b =>
                 {
-                    b.HasOne("SafeShareAPI.Model.MedicalHistory", "MedicalHistory")
+                    b.HasOne("SafeShareAPI.Model.MedicalHistory", null)
                         .WithMany("PreviousMedicalConditions")
                         .HasForeignKey("MedicalHistoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("MedicalHistory");
                 });
 
             modelBuilder.Entity("SafeShareAPI.Model.SurgicalHistory", b =>
                 {
-                    b.HasOne("SafeShareAPI.Model.MedicalHistory", "MedicalHistory")
+                    b.HasOne("SafeShareAPI.Model.MedicalHistory", null)
                         .WithMany("SurgicalHistory")
                         .HasForeignKey("MedicalHistoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("MedicalHistory");
                 });
 
             modelBuilder.Entity("SafeShareAPI.Model.User", b =>
