@@ -1,0 +1,18 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/ProjectEvaluation
+/.vs/SafeShareAPI
+/SafeShareAPI/bin/Debug/net8.0
+/SafeShareAPI/obj
+/SafeShareAPI.Business/bin/Debug/net8.0
+/SafeShareAPI.Business/obj
+/SafeShareAPI.Data/bin/Debug/net8.0
+/SafeShareAPI.Data/obj
+/SafeShareAPI.Enum/bin/Debug/net8.0
+/SafeShareAPI.Enum/obj
+/SafeShareAPI.Model/bin/Debug/net8.0
+/SafeShareAPI.Model/obj
+/SafeShareAPI.Provider/bin/Debug/net8.0
+/SafeShareAPI.Provider/obj
