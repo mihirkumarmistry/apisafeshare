@@ -31,6 +31,7 @@ namespace SafeShareAPI.Model
         public float BalanceDue { get; set; }
         public string PaymentStatus { get; set; }
         public bool IsDeleted { get; set; } = false;
+        [NotMapped] public string? PatientName { get; set; }
     }
 
     public class BillBreaskdown

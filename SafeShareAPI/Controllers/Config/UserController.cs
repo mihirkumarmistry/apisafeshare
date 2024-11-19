@@ -22,6 +22,12 @@ namespace SafeShareAPI.Controllers
             return SendResponse(_manager.Select(), _manager.listData);
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetById([FromRoute] int id)
+        {
+            return SendResponse(_manager.Select(id), _manager.listData);
+        }
+
         [HttpPost]
         public IActionResult Post(User data)
         {

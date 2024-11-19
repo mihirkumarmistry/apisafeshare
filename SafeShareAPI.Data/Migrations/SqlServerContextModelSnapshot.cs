@@ -43,8 +43,6 @@ namespace SafeShareAPI.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MedicalHistoryId");
-
                     b.ToTable("Allergies");
                 });
 
@@ -100,10 +98,6 @@ namespace SafeShareAPI.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DoctorId");
-
-                    b.HasIndex("PatientId");
 
                     b.ToTable("Appointments");
                 });
@@ -244,8 +238,6 @@ namespace SafeShareAPI.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MedicalHistoryId");
-
                     b.ToTable("DiagnosticTests");
                 });
 
@@ -300,8 +292,6 @@ namespace SafeShareAPI.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MedicalHistoryId");
 
                     b.ToTable("Medications");
                 });
@@ -415,8 +405,6 @@ namespace SafeShareAPI.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MedicalHistoryId");
-
                     b.ToTable("PreviousMedicalConditions");
                 });
 
@@ -447,8 +435,6 @@ namespace SafeShareAPI.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MedicalHistoryId");
 
                     b.ToTable("SurgicalHistories");
                 });
@@ -558,75 +544,11 @@ namespace SafeShareAPI.Data.Migrations
                     b.ToTable("Connections");
                 });
 
-            modelBuilder.Entity("SafeShareAPI.Model.Allergie", b =>
-                {
-                    b.HasOne("SafeShareAPI.Model.MedicalHistory", null)
-                        .WithMany("Allergies")
-                        .HasForeignKey("MedicalHistoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SafeShareAPI.Model.Appointment", b =>
-                {
-                    b.HasOne("SafeShareAPI.Model.User", "User")
-                        .WithMany()
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SafeShareAPI.Model.Patient", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Patient");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("SafeShareAPI.Model.BillBreaskdown", b =>
                 {
                     b.HasOne("SafeShareAPI.Model.Bill", null)
                         .WithMany("Breaskdowns")
                         .HasForeignKey("BillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SafeShareAPI.Model.DiagnosticTest", b =>
-                {
-                    b.HasOne("SafeShareAPI.Model.MedicalHistory", null)
-                        .WithMany("DiagnosticTest")
-                        .HasForeignKey("MedicalHistoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SafeShareAPI.Model.Medication", b =>
-                {
-                    b.HasOne("SafeShareAPI.Model.MedicalHistory", null)
-                        .WithMany("Medications")
-                        .HasForeignKey("MedicalHistoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SafeShareAPI.Model.PreviousMedicalCondition", b =>
-                {
-                    b.HasOne("SafeShareAPI.Model.MedicalHistory", null)
-                        .WithMany("PreviousMedicalConditions")
-                        .HasForeignKey("MedicalHistoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SafeShareAPI.Model.SurgicalHistory", b =>
-                {
-                    b.HasOne("SafeShareAPI.Model.MedicalHistory", null)
-                        .WithMany("SurgicalHistory")
-                        .HasForeignKey("MedicalHistoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -645,19 +567,6 @@ namespace SafeShareAPI.Data.Migrations
             modelBuilder.Entity("SafeShareAPI.Model.Bill", b =>
                 {
                     b.Navigation("Breaskdowns");
-                });
-
-            modelBuilder.Entity("SafeShareAPI.Model.MedicalHistory", b =>
-                {
-                    b.Navigation("Allergies");
-
-                    b.Navigation("DiagnosticTest");
-
-                    b.Navigation("Medications");
-
-                    b.Navigation("PreviousMedicalConditions");
-
-                    b.Navigation("SurgicalHistory");
                 });
 #pragma warning restore 612, 618
         }

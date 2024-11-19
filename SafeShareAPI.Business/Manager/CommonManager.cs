@@ -30,9 +30,9 @@ namespace SafeShareAPI.Business
             try
             {
                 using DefaultContext defaultContext = new(GetConnection());
-                listData = defaultContext.Appointments.AsNoTracking().Include(d => d.Patient).Select(s => new KeyVal
+                listData = defaultContext.Appointments.AsNoTracking().OrderByDescending(d => d.AppointmentDate).Select(s => new KeyVal
                 {
-                    Key = $"{s.AppointmentType} | {s.FirstName ?? s.Patient.FirstName} {s.LastName ?? s.Patient.LastName}",
+                    Key = $"{s.AppointmentType} | {s.FirstName} {s.LastName}",
                     Value = s.Id
                 }).ToList();
             }

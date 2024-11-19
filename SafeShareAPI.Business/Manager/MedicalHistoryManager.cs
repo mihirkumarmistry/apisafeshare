@@ -16,6 +16,10 @@ namespace SafeShareAPI.Business
             {
                 using DefaultContext defaultContext = new(GetConnection());
                 listData = defaultContext.MedicalHistories.ToList();
+                listData.ForEach(data =>
+                {
+                    data.PatientName = defaultContext.Patients.AsNoTracking().Where(d => d.Id == data.PatientId).Select(d => d.FirstName).FirstOrDefault();
+                });
             }
             catch (Exception ex) { Console.WriteLine(Convert.ToString(ex), null); exceptions = Exceptions.Failed; }
             return exceptions;
@@ -60,6 +64,7 @@ namespace SafeShareAPI.Business
                 }
                 else { exceptions = Exceptions.AlreadyExists; }
                 defaultContext.SaveChanges();
+                listData = new List<MedicalHistory> { medicalHistory };
             }
             catch (Exception ex) { Console.WriteLine(Convert.ToString(ex), data); exceptions = Exceptions.Failed; }
             return exceptions;
@@ -98,6 +103,13 @@ namespace SafeShareAPI.Business
         {
             Exceptions exceptions = Exceptions.Success;
             try { using DefaultContext defaultContext = new(GetConnection()); listData = defaultContext.Allergies.Where(u => u.Id == data).ToList(); }
+            catch (Exception ex) { Console.WriteLine(Convert.ToString(ex), null); exceptions = Exceptions.Failed; }
+            return exceptions;
+        }
+        public Exceptions SelectByMedicalId(int data)
+        {
+            Exceptions exceptions = Exceptions.Success;
+            try { using DefaultContext defaultContext = new(GetConnection()); listData = defaultContext.Allergies.Where(u => u.MedicalHistoryId == data).ToList(); }
             catch (Exception ex) { Console.WriteLine(Convert.ToString(ex), null); exceptions = Exceptions.Failed; }
             return exceptions;
         }
@@ -156,6 +168,14 @@ namespace SafeShareAPI.Business
             catch (Exception ex) { Console.WriteLine(Convert.ToString(ex), null); exceptions = Exceptions.Failed; }
             return exceptions;
         }
+
+        public Exceptions SelectByMedicalId(int data)
+        {
+            Exceptions exceptions = Exceptions.Success;
+            try { using DefaultContext defaultContext = new(GetConnection()); listData = defaultContext.PreviousMedicalConditions.Where(u => u.MedicalHistoryId == data).ToList(); }
+            catch (Exception ex) { Console.WriteLine(Convert.ToString(ex), null); exceptions = Exceptions.Failed; }
+            return exceptions;
+        }
         public Exceptions Save(PreviousMedicalCondition data)
         {
             Exceptions exceptions = Exceptions.Success;
@@ -208,6 +228,13 @@ namespace SafeShareAPI.Business
         {
             Exceptions exceptions = Exceptions.Success;
             try { using DefaultContext defaultContext = new(GetConnection()); listData = defaultContext.Medications.Where(u => u.Id == data).ToList(); }
+            catch (Exception ex) { Console.WriteLine(Convert.ToString(ex), null); exceptions = Exceptions.Failed; }
+            return exceptions;
+        }
+        public Exceptions SelectByMedicalId(int data)
+        {
+            Exceptions exceptions = Exceptions.Success;
+            try { using DefaultContext defaultContext = new(GetConnection()); listData = defaultContext.Medications.Where(u => u.MedicalHistoryId == data).ToList(); }
             catch (Exception ex) { Console.WriteLine(Convert.ToString(ex), null); exceptions = Exceptions.Failed; }
             return exceptions;
         }
@@ -266,6 +293,13 @@ namespace SafeShareAPI.Business
             catch (Exception ex) { Console.WriteLine(Convert.ToString(ex), null); exceptions = Exceptions.Failed; }
             return exceptions;
         }
+        public Exceptions SelectByMedicalId(int data)
+        {
+            Exceptions exceptions = Exceptions.Success;
+            try { using DefaultContext defaultContext = new(GetConnection()); listData = defaultContext.SurgicalHistories.Where(u => u.MedicalHistoryId == data).ToList(); }
+            catch (Exception ex) { Console.WriteLine(Convert.ToString(ex), null); exceptions = Exceptions.Failed; }
+            return exceptions;
+        }
         public Exceptions Save(SurgicalHistory data)
         {
             Exceptions exceptions = Exceptions.Success;
@@ -318,6 +352,13 @@ namespace SafeShareAPI.Business
         {
             Exceptions exceptions = Exceptions.Success;
             try { using DefaultContext defaultContext = new(GetConnection()); listData = defaultContext.DiagnosticTests.Where(u => u.Id == data).ToList(); }
+            catch (Exception ex) { Console.WriteLine(Convert.ToString(ex), null); exceptions = Exceptions.Failed; }
+            return exceptions;
+        }
+        public Exceptions SelectByMedicalId(int data)
+        {
+            Exceptions exceptions = Exceptions.Success;
+            try { using DefaultContext defaultContext = new(GetConnection()); listData = defaultContext.DiagnosticTests.Where(u => u.MedicalHistoryId == data).ToList(); }
             catch (Exception ex) { Console.WriteLine(Convert.ToString(ex), null); exceptions = Exceptions.Failed; }
             return exceptions;
         }

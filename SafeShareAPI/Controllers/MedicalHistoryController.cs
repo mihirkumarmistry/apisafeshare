@@ -20,10 +20,16 @@ namespace SafeShareAPI.Controllers
             return SendResponse(_manager.Select(), _manager.listData);
         }
 
+        [HttpGet("{medicalHistoryId}")]
+        public IActionResult GetById([FromRoute] int medicalHistoryId)
+        {
+            return SendResponse(_manager.Select(medicalHistoryId), _manager.listData);
+        }
+
         [HttpPost]
         public IActionResult Post(MedicalHistory data)
         {
-            return SendResponseMessage(_manager.Save(data));
+            return SendResponse(_manager.Save(data), _manager.listData);
         }
 
         [HttpDelete]
@@ -47,6 +53,12 @@ namespace SafeShareAPI.Controllers
         public IActionResult Get()
         {
             return SendResponse(_manager.Select(), _manager.listData);
+        }
+
+        [HttpGet("{medicalHistoryId}")]
+        public IActionResult GetByMedicalId([FromRoute] int medicalHistoryId)
+        {
+            return SendResponse(_manager.SelectByMedicalId(medicalHistoryId), _manager.listData);
         }
 
         [HttpPost]
@@ -78,6 +90,12 @@ namespace SafeShareAPI.Controllers
             return SendResponse(_manager.Select(), _manager.listData);
         }
 
+        [HttpGet("{medicalHistoryId}")]
+        public IActionResult GetByMedicalId([FromRoute] int medicalHistoryId)
+        {
+            return SendResponse(_manager.SelectByMedicalId(medicalHistoryId), _manager.listData);
+        }
+
         [HttpPost]
         public IActionResult Post(PreviousMedicalCondition data)
         {
@@ -105,6 +123,12 @@ namespace SafeShareAPI.Controllers
         public IActionResult Get()
         {
             return SendResponse(_manager.Select(), _manager.listData);
+        }
+
+        [HttpGet("{medicalHistoryId}")]
+        public IActionResult GetByMedicalId([FromRoute] int medicalHistoryId)
+        {
+            return SendResponse(_manager.SelectByMedicalId(medicalHistoryId), _manager.listData);
         }
 
         [HttpPost]
@@ -136,6 +160,12 @@ namespace SafeShareAPI.Controllers
             return SendResponse(_manager.Select(), _manager.listData);
         }
 
+        [HttpGet("{medicalHistoryId}")]
+        public IActionResult GetByMedicalId([FromRoute] int medicalHistoryId)
+        {
+            return SendResponse(_manager.SelectByMedicalId(medicalHistoryId), _manager.listData);
+        }
+
         [HttpPost]
         public IActionResult Post(SurgicalHistory data)
         {
@@ -163,6 +193,12 @@ namespace SafeShareAPI.Controllers
         public IActionResult Get()
         {
             return SendResponse(_manager.Select(), _manager.listData);
+        }
+
+        [HttpGet("{medicalHistoryId}")]
+        public IActionResult GetByMedicalId([FromRoute] int medicalHistoryId)
+        {
+            return SendResponse(_manager.SelectByMedicalId(medicalHistoryId), _manager.listData);
         }
 
         [HttpPost]

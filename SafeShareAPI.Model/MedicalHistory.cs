@@ -11,11 +11,13 @@ namespace SafeShareAPI.Model
         [Required] public string Title { get; set; }
         public string Detail { get; set; }
 
-        public List<Allergie>? Allergies { get; set; }
-        public List<PreviousMedicalCondition>? PreviousMedicalConditions { get; set; }
-        public List<Medication>? Medications { get; set; }
-        public List<SurgicalHistory>? SurgicalHistory { get; set; }
-        public List<DiagnosticTest>? DiagnosticTest { get; set; }
+        [NotMapped] public List<Allergie>? Allergies { get; set; }
+        [NotMapped] public List<PreviousMedicalCondition>? PreviousMedicalConditions { get; set; }
+        [NotMapped] public List<Medication>? Medications { get; set; }
+        [NotMapped] public List<SurgicalHistory>? SurgicalHistory { get; set; }
+        [NotMapped] public List<DiagnosticTest>? DiagnosticTest { get; set; }
+
+        [NotMapped] public string? PatientName { get; set; }
     }
 
     public class Allergie

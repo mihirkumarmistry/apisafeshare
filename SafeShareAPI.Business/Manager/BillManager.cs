@@ -19,6 +19,8 @@ namespace SafeShareAPI.Business
                 if (listData.Count > 0)
                 {
                     listData.ForEach(u => {
+                        Patient patient = defaultContext.Patients.AsNoTracking().Where(d => d.Id == u.PatientId).FirstOrDefault();
+                        u.PatientName = $"{patient.FirstName} {patient.LastName}";
                         u.Breaskdowns = defaultContext.BillBreaskdowns.AsNoTracking().Where(d => d.BillId == u.Id).ToList();
                     });
                 }
@@ -86,7 +88,7 @@ namespace SafeShareAPI.Business
                 }
                 else { 
                     defaultContext.Bills.Update(bill);
-                    defaultContext.BillBreaskdowns.RemoveRange(defaultContext.BillBreaskdowns.Where(d => d.Id == bill.Id).ToList());
+                    defaultContext.BillBreaskdowns.RemoveRange(defaultContext.BillBreaskdowns.Where(d => d.BillId == bill.Id).ToList());
                     defaultContext.SaveChanges();
                 }
 
